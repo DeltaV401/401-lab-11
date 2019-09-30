@@ -1,6 +1,6 @@
 'use strict';
 
-require('../../supergoose.js');
+require('../supergoose.js');
 const auth = require('../../../src/auth/middleware.js');
 const User = require('../../../src/auth/users-model.js');
 
@@ -24,8 +24,6 @@ describe('Auth Middleware', () => {
   let errorObject = {'message': 'Invalid User ID/Password', 'status': 401, 'statusMessage': 'Unauthorized'};
   
   describe('user authentication', () => {
-    
-    let cachedToken;
 
     it('fails a login for a user (admin) with the incorrect basic credentials', () => {
 
@@ -56,7 +54,6 @@ describe('Auth Middleware', () => {
 
       return auth(req,res,next)
         .then( () => {
-          cachedToken = req.token;
           expect(next).toHaveBeenCalledWith();
         });
 

@@ -3,9 +3,9 @@
 const jwt = require('jsonwebtoken');
 
 const server = require('../../../src/app.js').server;
-const supergoose = require('../../supergoose.js');
+const supergoose = require('../supergoose.js');
 
-const mockRequest = supergoose.server(server);
+const mockRequest = supergoose(server);
 
 let users = {
   admin: {username: 'admin', password: 'password', role: 'admin'},
@@ -18,8 +18,7 @@ describe('Auth Router', () => {
   describe.each(
     Object.keys(users).map(key => [key])
   )('%s users', (userType) => {
-    
-    let encodedToken;
+
     let id;
     
     it('can create one', () => {
@@ -28,7 +27,7 @@ describe('Auth Router', () => {
         .then(results => {
           var token = jwt.verify(results.text, process.env.SECRET || 'changeit');
           id = token.id;
-          encodedToken = results.text;
+          console.log(token);
           expect(token.id).toBeDefined();
           expect(token.capabilities).toBeDefined();
         });

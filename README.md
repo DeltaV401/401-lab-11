@@ -1,8 +1,8 @@
-# LAB - 
+# LAB - 11 
 
-## Project Name
+## Authentication
 
-### Author: Student/Group Name
+### Jon Struve
 
 ### Links and Resources
 * [submission PR](https://github.com/DeltaV401/401-lab-11/pull/1)

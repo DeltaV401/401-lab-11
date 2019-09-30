@@ -24,18 +24,20 @@ describe('Auth Router', () => {
     it('can create one', () => {
       return mockRequest.post('/signup')
         .send(users[userType])
+        .expect(200)
         .then(results => {
+          console.log(results.text);
           var token = jwt.verify(results.text, process.env.SECRET || 'changeit');
           id = token.id;
-          console.log(token);
           expect(token.id).toBeDefined();
           expect(token.capabilities).toBeDefined();
         });
     });
 
     it('can signin with basic', () => {
-      return mockRequest.post('/signin')
+      return mockRequest.get('/signin')
         .auth(users[userType].username, users[userType].password)
+        .expect(200)
         .then(results => {
           var token = jwt.verify(results.text, process.env.SECRET || 'changeit');
           expect(token.id).toEqual(id);

@@ -8,6 +8,7 @@ const morgan = require('morgan');
 // Esoteric Resources
 const errorHandler = require( './middleware/error.js');
 const notFound = require( './middleware/404.js' );
+const router = require('./auth/router');
 
 // Prepare the express app
 const app = express();
@@ -19,8 +20,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-const authMiddleware = require('./auth/middleware');
-app.use(authMiddleware);
+app.use(router);
 
 // Catchalls
 app.use(notFound);

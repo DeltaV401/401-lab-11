@@ -21,7 +21,7 @@ describe('Auth Middleware', () => {
   // admin:password: YWRtaW46cGFzc3dvcmQ=
   // admin:foo: YWRtaW46Zm9v
   
-  let errorObject = {"message": "Invalid User ID/Password", "status": 401, "statusMessage": "Unauthorized"};
+  let errorObject = {'message': 'Invalid User ID/Password', 'status': 401, 'statusMessage': 'Unauthorized'};
   
   describe('user authentication', () => {
     
@@ -36,9 +36,8 @@ describe('Auth Middleware', () => {
       };
       let res = {};
       let next = jest.fn();
-      let middleware = auth;
 
-      return middleware(req, res, next)
+      return auth(req, res, next)
         .then(() => {
           expect(next).toHaveBeenCalledWith(errorObject);
         });
@@ -54,9 +53,8 @@ describe('Auth Middleware', () => {
       };
       let res = {};
       let next = jest.fn();
-      let middleware = auth;
 
-      return middleware(req,res,next)
+      return auth(req,res,next)
         .then( () => {
           cachedToken = req.token;
           expect(next).toHaveBeenCalledWith();

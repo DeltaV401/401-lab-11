@@ -8,6 +8,7 @@ router.get('/books/:id', handleGetOne);
 
 // Route Handlers
 function handleGetAll(req, res, next) {
+  if(!user)
   let books = {
     count: 3,
     results: [

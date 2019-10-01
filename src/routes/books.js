@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 
+const auth = require('../auth/middleware');
+
 router.use(auth);
 
 router.get('/books', handleGetAll);
@@ -10,7 +12,6 @@ router.get('/books/:id', handleGetOne);
 
 // Route Handlers
 function handleGetAll(req, res, next) {
-  if(!user)
   let books = {
     count: 3,
     results: [

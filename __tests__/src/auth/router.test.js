@@ -26,7 +26,6 @@ describe('Auth Router', () => {
         .send(users[userType])
         .expect(200)
         .then(results => {
-          console.log(results.text);
           var token = jwt.verify(results.text, process.env.SECRET || 'changeit');
           id = token.id;
           expect(token.id).toBeDefined();

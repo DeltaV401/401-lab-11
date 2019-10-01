@@ -25,7 +25,7 @@ module.exports = (req, res, next) => {
     let base64Buffer = Buffer.from(authString,'base64'); // <Buffer 01 02...>
     let bufferString = base64Buffer.toString(); // john:mysecret
     let [username,password] = bufferString.split(':');  // variables username="john" and password="mysecret"
-    let auth = { username, password };  // {username:"john", password:"mysecret"}
+    let auth = {username, password};  // {username:"john", password:"mysecret"}
 
     if(!password) {
       return _authError();
@@ -36,17 +36,17 @@ module.exports = (req, res, next) => {
       .catch(_authError);
   }
 
-  function _authenticate(user) {
+  async function _authenticate(user) {
     if ( user ) {
       req.user = user;
       next();
     }
     else {
-      return _authError('User not found');
+      await _authError();
     }
   }
 
-  function _authError() {
+  async function _authError() {
     next({status: 401, statusMessage: 'Unauthorized', message: 'Invalid User ID/Password'});
   }
 

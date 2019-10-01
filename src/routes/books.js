@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 
+router.use(auth);
+
 router.get('/books', handleGetAll);
 router.get('/books/:id', handleGetOne);
 

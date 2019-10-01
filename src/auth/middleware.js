@@ -38,6 +38,7 @@ module.exports = (req, res, next) => {
 
   async function _authenticate(user) {
     if ( user ) {
+      req.token = user.generateToken();
       req.user = user;
       next();
     }

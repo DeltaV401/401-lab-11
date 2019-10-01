@@ -54,6 +54,9 @@ describe('Auth Middleware', () => {
 
       return auth(req,res,next)
         .then( () => {
+          expect(req).toHaveProperty('user');
+          expect(req.user).toHaveProperty('username', 'admin');
+          expect(req).toHaveProperty('token');
           expect(next).toHaveBeenCalledWith();
         });
 

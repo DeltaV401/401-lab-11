@@ -17,6 +17,7 @@
     "jest": "^24.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb-memory-server": "^5.2.6",
+    "morgan": "^1.9.1",
     "supergoose": "^0.2.6",
     "supertest": "^4.0.2"
   },
